@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Modifier mon profil</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <label>Nom :</label><br>
+    <input type="text" name="name" value="{{ user[0] }}" required><br><br>
+
+    <label>Email :</label><br>
+    <input type="email" name="email" value="{{ user[1] }}" required><br><br>
+
+    <label>Mot de passe :</label><br>
+    <input type="password" name="password" placeholder="Laisser vide pour ne pas changer"><br><br>
+
+    <label>Photo de profil :</label><br>
+    <input type="file" name="profile_pic"><br><br>
+
+    <input type="submit" value="Enregistrer" class="btn-custom">
+</form>
+
+<p><a href="{{ url_for('profile') }}">← Retour au profil</a></p>
+{% endblock %}

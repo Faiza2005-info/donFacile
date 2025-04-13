@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Détail du don</h2>
+
+{% if donation %}
+
+    {% if donation[5] %}
+        <img src="{{ url_for('static', filename='uploads/' ~ donation[5]) }}"
+             alt="Image du don"
+             style="max-width: 400px; margin-bottom: 15px; border-radius: 8px;">
+    {% endif %}
+
+    <h3>{{ donation[0] }}</h3>
+    <p><strong>Catégorie :</strong> {{ donation[2] }}</p>
+    <p><strong>Description :</strong> {{ donation[1] }}</p>
+    <p><strong>Localisation :</strong> 📍 {{ donation[3] }}</p>
+    <p><strong>Publié le :</strong> 🕒 {{ donation[4] }}</p>
+
+    {% if session.get('user_id') %}
+        {% if demande_acceptee %}
+            <p style="color: gray; font-style: italic;">Ce don a déjà été attribué.</p>
+        {% else %}
+            <form method="POST" action="{{ url_for('request_donation', donation_id=donation_id) }}">
+                <input type="submit" value="Demander ce don">
+            </form>
+
+            <!-- Bouton pour discuter avec le donateur -->
+            <p style="margin-top: 10px;">
+                <a href="{{ url_for('chat', donation_id=donation_id, receiver_id=donateur_id) }}"
+                   style="text-decoration: underline; color: #9A8C98;">
+                    💬 Discuter avec le donateur
+                </a>
+            </p>
+        {% endif %}
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Connectez-vous</a> pour faire une demande.</p>
+    {% endif %}
+
+{% else %}
+    <p>Ce don n'existe pas.</p>
+{% endif %}
+{% endblock %}

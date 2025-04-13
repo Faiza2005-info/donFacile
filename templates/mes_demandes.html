@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Mes demandes de dons</h2>
+
+{% if demandes %}
+    <ul>
+        {% for demande in demandes %}
+            <li>
+                <strong>{{ demande[0] }}</strong> ({{ demande[1] }})<br>
+                📍 {{ demande[2] }}<br>
+                🕒 Demandé le : {{ demande[4] }}<br>
+                📌 Statut : <em>{{ demande[3] }}</em>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez encore fait aucune demande.</p>
+{% endif %}
+{% endblock %}

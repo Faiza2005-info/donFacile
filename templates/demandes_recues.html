@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Demandes reçues</h2>
+
+{% if demandes %}
+    <ul>
+        {% for demande in demandes %}
+            <li style="margin-bottom: 15px;">
+                <strong>{{ demande[1] }}</strong> a demandé <em>"{{ demande[2] }}"</em> —  
+                <span style="font-weight: bold;">{{ demande[3] }}</span><br>
+
+                {% if demande[3] == 'en attente' %}
+                    <form method="post" action="{{ url_for('traiter_demande', demande_id=demande[0], action='accepter') }}" style="display: inline;">
+                        <button type="submit">✅ Accepter</button>
+                    </form>
+                    <form method="post" action="{{ url_for('traiter_demande', demande_id=demande[0], action='refuser') }}" style="display: inline;">
+                        <button type="submit">❌ Refuser</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucune demande reçue.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DonFacile - Accueil</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #EFEFD0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1A1A1A;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: #B4C7BF;
+            padding: 20px;
+            text-align: center;
+            color: #1A1A1A;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.2em;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid #1A1A1A;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #B4C7BF;
+            color: #1A1A1A;
+        }
+
+        .btn-primary:hover {
+            background-color: #9DACAA;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #1A1A1A;
+        }
+
+        .btn-outline:hover {
+            background-color: #dce8e2;
+        }
+
+        img {
+        max-width: 100%;
+        height: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="max-width: 220px;">
+</div>
+</header>
+    
+    <h1>Bienvenue sur DonFacile</h1>
+    <p>Plateforme de dons </p>
+
+    <div class="buttons">
+        <a href="{{ url_for('register') }}" class="btn btn-primary">S'inscrire</a>
+        <a href="{{ url_for('index') }}" class="btn btn-outline">Voir les dons</a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline">Se connecter</a>
+    </div>
+</div>
+
+</body>
+</html>

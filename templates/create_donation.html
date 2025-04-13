@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Créer un don</h2>
+
+<form method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto;">
+    <label for="title">Titre :</label><br>
+    <input type="text" name="title" id="title" required style="width: 100%; padding: 8px;"><br><br>
+
+    <label for="description">Description :</label><br>
+    <textarea name="description" id="description" rows="4" style="width: 100%; padding: 8px;"></textarea><br><br>
+
+    <label for="category">Catégorie :</label><br>
+    <select name="category" id="category" style="width: 100%; padding: 8px;">
+        <option value="alimentaire">Alimentaire</option>
+        <option value="vestimentaire">Vestimentaire</option>
+        <option value="autre">Autre</option>
+    </select><br><br>
+
+    <label for="location">Localisation :</label><br>
+    <input type="text" name="location" id="location" required style="width: 100%; padding: 8px;"><br><br>
+
+    <label for="image">Image du don :</label><br>
+    <input type="file" name="image" id="image" accept="image/*"><br><br>
+
+    <input type="submit" value="Publier le don" class="btn-custom">
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Modifier le don</h2>
+
+<form method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto;">
+    <label>Titre :</label><br>
+    <input type="text" name="title" value="{{ don[0] }}" required style="width: 100%; padding: 8px;"><br><br>
+
+    <label>Description :</label><br>
+    <textarea name="description" rows="4" style="width: 100%; padding: 8px;">{{ don[1] }}</textarea><br><br>
+
+    <label>Catégorie :</label><br>
+    <select name="category" style="width: 100%; padding: 8px;">
+        <option value="alimentaire" {% if don[2] == 'alimentaire' %}selected{% endif %}>Alimentaire</option>
+        <option value="vestimentaire" {% if don[2] == 'vestimentaire' %}selected{% endif %}>Vestimentaire</option>
+        <option value="autre" {% if don[2] == 'autre' %}selected{% endif %}>Autre</option>
+    </select><br><br>
+
+    <label>Localisation :</label><br>
+    <input type="text" name="location" value="{{ don[3] }}" required style="width: 100%; padding: 8px;"><br><br>
+
+    <label>Image du don :</label><br>
+    {% if don[4] %}
+        <img src="{{ url_for('static', filename='uploads/' + don[4]) }}" style="max-width: 200px;"><br>
+    {% endif %}
+    <input type="file" name="image" accept="image/*"><br><br>
+
+    <input type="submit" value="Enregistrer les modifications" style="padding: 10px 20px;">
+</form>
+{% endblock %}

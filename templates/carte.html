@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 style="text-align: center; margin-bottom: 20px;">🗺️ Carte des dons</h2>
+
+<!-- Carte -->
+<div id="map" style="height: 500px; width: 100%; border-radius: 8px; margin-bottom: 30px;"></div>
+
+<!-- Leaflet CSS + JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    const map = L.map('map').setView([46.6031, 1.8883], 6); // France
+
+
+    // Fond de carte OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Les dons récupérés depuis Flask
+    let donData = ( donations | tojson | safe );
+
+    // Boucle pour ajouter les marqueurs
+    donData.forEach(don => {
+        const id = don[0];
+        const title = don[1];
+        const description = don[2];
+        const lat = don[3];
+        const lng = don[4];
+
+        if (lat && lng) {
+            L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup(`
+                    <strong>${title}</strong><br>
+                    ${description}<br>
+                    <a href="/donation/${id}">Voir le don</a>
+                `);
+        }
+    });
+</script>
+
+
+{% endblock %}

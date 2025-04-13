@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Mon profil</h2>
+
+<div style="display: flex; align-items: center; margin-bottom: 20px;">
+    {% if user[2] %}
+        <img src="{{ url_for('static', filename='profiles/' ~ user[2]) }}"
+             alt="Photo de profil"
+             style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; margin-right: 20px;">
+    {% else %}
+        <div style="width: 100px; height: 100px; background: #ccc; border-radius: 50%; margin-right: 20px;"></div>
+    {% endif %}
+    <div>
+        <p><strong>Nom :</strong> {{ user[0] }}</p>
+        <p><strong>Email :</strong> {{ user[1] }}</p>
+        <a href="{{ url_for('edit_profile') }}" class="btn-custom">✏️ Modifier mon profil</a>
+    </div>
+</div>
+<div style="margin-top: 20px; background: #f2f2f2; padding: 15px; border-radius: 8px;">
+    <h4>📊 Mon tableau de bord</h4>
+    <ul style="list-style: none; padding-left: 0;">
+        <li>📦 Dons publiés : <strong>{{ donations|length }}</strong></li>
+        <li>📥 Demandes envoyées : <strong>{{ demande_count }}</strong></li>
+        <li>💬 Discussions actives : <strong>{{ discussion_count }}</strong></li>
+    </ul>
+</div>
+
+
+<h3>Mes dons</h3>
+{% if donations %}
+    <ul style="list-style: none; padding: 0;">
+        {% for don in donations %}
+            <li style="margin-bottom: 15px;">
+                <strong>{{ don[0] }}</strong> ({{ don[2] }})<br>
+                {{ don[1] }}<br>
+                📍 {{ don[3] }}<br>
+                🕒 {{ don[4] }}<br><br>
+                <a href="{{ url_for('modifier_don', donation_id=don[0]) }}" style="margin-right: 10px; background-color: #3498db; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none;">
+                    Modifier
+                </a>
+                
+                <form action="{{ url_for('supprimer_don', donation_id=don[0]) }}" method="POST" onsubmit="return confirm('Supprimer ce don ?');" style="display: inline;">
+                    <button type="submit" style="background-color: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                        Supprimer
+                    </button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez encore publié aucun don.</p>
+{% endif %}
+{% endblock %}

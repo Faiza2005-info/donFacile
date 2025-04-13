@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DonFacile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        
+
+    </style>
+    
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+    
+        window.addEventListener('click', function (e) {
+            const sidebar = document.getElementById('sideMenu');
+            const burger = document.querySelector('.burger');
+            if (!sidebar.contains(e.target) && !burger.contains(e.target)) {
+                sidebar.classList.remove('show');
+            }
+        });
+    
+        const placeholderTexts = [
+            "Rechercher par localisation...",
+            "par type de don..",
+            
+        ];
+    
+        window.addEventListener("DOMContentLoaded", () => {
+            const input = document.querySelector('input[name="location"]');
+            let placeholderIndex = 0;
+    
+            function typePlaceholder() {
+                if (!input) return;
+    
+                input.setAttribute("placeholder", "");
+                let text = placeholderTexts[placeholderIndex];
+                let charIndex = 0;
+    
+                let typing = setInterval(() => {
+                    if (charIndex < text.length) {
+                        input.setAttribute("placeholder", input.getAttribute("placeholder") + text[charIndex]);
+                        charIndex++;
+                    } else {
+                        clearInterval(typing);
+                        setTimeout(() => {
+                            placeholderIndex = (placeholderIndex + 1) % placeholderTexts.length;
+                            typePlaceholder();
+                        }, 2500);
+                    }
+                }, 80);
+            }
+    
+            typePlaceholder(); // Lancer l'effet
+        });
+
+        // Dark mode toggle
+        document.addEventListener("DOMContentLoaded", () => {
+        const toggleBtn = document.getElementById("darkModeToggle");
+        const body = document.body;
+
+        // Check saved preference
+        if (localStorage.getItem("dark-mode") === "true") {
+            body.classList.add("dark-mode");
+            toggleBtn.textContent = "☀️";
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            const isDark = body.classList.contains("dark-mode");
+            toggleBtn.textContent = isDark ? "☀️" : "🌙";
+            localStorage.setItem("dark-mode", isDark);
+        });
+    });
+
+    </script>
+    
+</head>
+<body>
+
+<header>
+    <a href="{{ url_for('home') }}" class="logo-link" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 40px;">
+    </a>
+
+    <div>
+        <button id="darkModeToggle" class="dark-toggle">🌙</button>
+        <button class="burger" onclick="toggleMenu()">☰</button>
+        
+    </div>
+</header>
+
+
+    
+
+
+
+<!-- Sidebar -->
+<div id="sideMenu" class="sidebar">
+    <div class="menu-links">
+        {% if session.get('user_id') %}
+
+            <a href="{{ url_for('profile') }}">Mon profil</a>
+            <a href="{{ url_for('mes_demandes') }}">Mes demandes</a>
+            <a href="{{ url_for('demandes_recues') }}"> Demandes reçues</a>
+
+            <a href="{{ url_for('carte') }}">Carte des dons</a>
+
+            <a href="{{ url_for('mes_messages') }}">Mes messages {% if unread_count > 0 %}
+                <span style="color: red;">({{ unread_count }})</span>{% endif %}</a>
+            <a href="{{ url_for('logout') }}">Déconnexion</a>
+            
+        {% else %}
+            <a href="{{ url_for('login') }}">Connexion</a>
+            <a href="{{ url_for('register') }}">Inscription</a>
+        {% endif %}
+    </div>
+</div>
+
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>
