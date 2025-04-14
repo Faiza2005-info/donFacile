@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Messagerie</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+    <!-- 📋 Liste des discussions -->
+    <div style="flex: 1; min-width: 250px;">
+        <h4>📁 Mes conversations</h4>
+        {% if discussions %}
+            <ul style="list-style: none; padding: 0;">
+                {% for d in discussions %}
+                    <li style="margin-bottom: 10px;">
+                        <a href="{{ url_for('messages', donation_id=d.donation_id, receiver_id=d.user_id) }}">
+                            💬 Avec <strong>{{ d.user_name }}</strong> — {{ d.donation_title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucune discussion pour le moment.</p>
+        {% endif %}
+    </div>
+
+    <!-- 💬 Zone de chat -->
+    {% if receiver_id and donation_id %}
+    <div style="flex: 2; min-width: 350px;">
+        <h4>💬 Discussion avec {{ receiver_name }}</h4>
+
+        <div style="background: #fff; padding: 10px; border-radius: 8px; max-height: 300px; overflow-y: auto;">
+            {% for msg in chat_messages %}
+                <p style="margin-bottom: 10px;">
+                    {% if msg[0] == session['user_id'] %}
+                        <strong>Moi :</strong> {{ msg[1] }}<br><small>{{ msg[2] }}</small>
+                    {% else %}
+                        <strong>{{ receiver_name }} :</strong> {{ msg[1] }}<br><small>{{ msg[2] }}</small>
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+
+        <form method="POST" action="{{ url_for('messages', donation_id=donation_id, receiver_id=receiver_id) }}" style="margin-top: 15px;">
+            
+            <textarea name="message" rows="3" style="width: 100%; padding: 8px;" placeholder="Écrire un message..."></textarea><br>
+            <input type="submit" value="Envoyer" class="btn-custom">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

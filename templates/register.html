@@ -1,10 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Inscription</h2>
-<form method="POST">
-    <label>Nom :</label><input type="text" name="name" required><br>
-    <label>Email :</label><input type="email" name="email" required><br>
-    <label>Mot de passe :</label><input type="password" name="password" required><br>
-    <input type="submit" value="S'inscrire" class="btn-custom">
-</form>
+
+<div class="auth-container fade-in">
+    <h2>Créer un compte</h2>
+
+    {% if error %}
+        <div class="error-msg">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('register') }}" class="auth-form">
+        <label for="name">Nom complet :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Adresse email :</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" minlength="6" required>
+
+        <label for="confirm_password">Confirmer le mot de passe :</label>
+        <input type="password" id="confirm_password" name="confirm_password" minlength="6" required>
+
+        <div class="checkbox-line">
+            <input type="checkbox" id="accept_terms" name="accept_terms" required>
+            <label for="accept_terms">J'accepte les <a href="#">conditions d'utilisation</a></label>
+        </div>
+
+        <button type="submit" class="btn-custom">S'inscrire</button>
+    </form>
+
+    <p class="switch-auth">Vous avez déjà un compte ? <a href="{{ url_for('login') }}">Connexion</a></p>
+</div>
+
 {% endblock %}

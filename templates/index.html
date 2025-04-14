@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div style="max-width: 900px; margin: auto; padding: 30px 20px;">
+<div class="index-container">
+    
 
     <!-- Barre de recherche -->
-    <div style="text-align: center; margin-bottom: 40px;">
-        <form method="get" action="{{ url_for('index') }}" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-            <input type="text" name="location"
-                   placeholder="Rechercher par localisation, type de don..."
-                   value="{{ location_filter or '' }}"
-                   style="padding: 10px; width: 260px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px;">
+    <div class="search-bar">
+        <form method="get" action="{{ url_for('index') }}" class="search-form">
+            <input type="text" name="location" placeholder="Rechercher par localisation, type de don..."
+                   value="{{ location_filter or '' }}" class="input-text">
 
-            <select name="category"
-                    style="padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 14px;">
+            <select name="category" class="input-select">
                 <option value="all" {% if category_filter == 'all' or not category_filter %}selected{% endif %}>Toutes catégories</option>
                 <option value="alimentaire" {% if category_filter == 'alimentaire' %}selected{% endif %}>Alimentaire</option>
                 <option value="vestimentaire" {% if category_filter == 'vestimentaire' %}selected{% endif %}>Vestimentaire</option>
@@ -22,40 +20,36 @@
             <input type="submit" value="Rechercher" class="btn-custom">
         </form>
     </div>
-    <div style="max-width: 900px; margin: auto; padding: 30px 20px;" class="fade-in">
 
     <!-- Bouton "Faire un don" -->
-    <div style="text-align:center; margin-bottom: 35px;">
-        <a href="{{ url_for('create_donation') }}"
-        class="btn-custom">
+    <div class="add-donation-btn">
+        <a href="{{ url_for('create_donation') }}" class="btn-custom">
             ➕ Faire un don
         </a>
     </div>
 
-    <h3 style="text-align: center; color: #2C3E50; margin-bottom: 25px;">Dons disponibles</h3>
+    <h3 class="section-title">Dons disponibles</h3>
 
     {% if donations %}
-        <ul style="list-style-type: none; padding: 0;">
+        <ul class="donation-list">
             {% for don in donations %}
-                <li style="margin-bottom: 25px; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); display: flex; gap: 20px; align-items: flex-start;">
+                <li class="donation-item">
                     {% if don[6] %}
                         <img src="{{ url_for('static', filename='uploads/' ~ don[6]) }}"
-                             alt="Image du don"
-                             style="max-width: 120px; border-radius: 6px;">
+                             alt="Image du don" class="donation-img">
                     {% endif %}
-                    <div>
-                        <strong style="font-size: 18px;">{{ don[1] }}</strong> <em>({{ don[3] }})</em><br>
-                        <p style="margin: 8px 0;">{{ don[2] }}</p>
+                    <div class="donation-info">
+                        <strong class="donation-title">{{ don[1] }}</strong> <em>({{ don[3] }})</em><br>
+                        <p>{{ don[2] }}</p>
                         📍 <strong>{{ don[4] }}</strong><br>
-                        🕒 <span style="color: #555;">{{ don[5] }}</span><br><br>
-                        <a href="{{ url_for('donation_detail', donation_id=don[0]) }}"
-                           style="color: #9A8C98; text-decoration: underline;">Voir détail</a>
+                        🕒 <span class="donation-date">{{ don[5] }}</span><br><br>
+                        <a href="{{ url_for('donation_detail', donation_id=don[0]) }}" class="donation-link">Voir détail</a>
                     </div>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p style="text-align: center; color: #555;">Aucun don disponible pour le moment.</p>
+        <p class="no-donation-msg">Aucun don disponible pour le moment.</p>
     {% endif %}
 </div>
 

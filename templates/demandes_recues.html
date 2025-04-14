@@ -1,26 +1,41 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Demandes reçues</h2>
+<div style="max-width: 800px; margin: auto; padding: 30px 20px;" class="fade-in">
+    <h2 style="text-align: center; color: var(--vert-fonce); margin-bottom: 30px;">📥 Demandes reçues</h2>
 
-{% if demandes %}
-    <ul>
-        {% for demande in demandes %}
-            <li style="margin-bottom: 15px;">
-                <strong>{{ demande[1] }}</strong> a demandé <em>"{{ demande[2] }}"</em> —  
-                <span style="font-weight: bold;">{{ demande[3] }}</span><br>
+    {% if demandes %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for demande in demandes %}
+                {% set couleur_statut =
+                    'orange' if demande[3] == 'en attente'
+                    else 'green' if demande[3] == 'acceptée'
+                    else 'crimson'
+                %}
 
-                {% if demande[3] == 'en attente' %}
-                    <form method="post" action="{{ url_for('traiter_demande', demande_id=demande[0], action='accepter') }}" style="display: inline;">
-                        <button type="submit">✅ Accepter</button>
-                    </form>
-                    <form method="post" action="{{ url_for('traiter_demande', demande_id=demande[0], action='refuser') }}" style="display: inline;">
-                        <button type="submit">❌ Refuser</button>
-                    </form>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Aucune demande reçue.</p>
-{% endif %}
+                <li style="margin-bottom: 25px; background: var(--blanc); padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                    <p style="margin: 0 0 10px;">
+                        <strong style="color: var(--texte);">{{ demande[1] }}</strong>
+                        a demandé <em>"{{ demande[2] }}"</em><br>
+                        Statut :
+                        <span style="font-weight: bold; color: (couleur_statut );">
+                            {{ demande[3] | capitalize }}
+                        </span>
+                    </p>
+
+                    {% if demande[3] == 'en attente' %}
+                        <form method="post" action="{{ url_for('traiter_demande', demande_id=demande[0], action='accepter') }}" style="display: inline;">
+                            <button type="submit" class="btn-custom" style="margin-right: 10px;">✅ Accepter</button>
+                        </form>
+                        <form method="post" action="{{ url_for('traiter_demande', demande_id=demande[0], action='refuser') }}" style="display: inline;">
+                            <button type="submit" class="btn-custom" style="background-color: crimson;">❌ Refuser</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="text-align: center; color: #555;">Aucune demande reçue pour l’instant.</p>
+    {% endif %}
+</div>
 {% endblock %}

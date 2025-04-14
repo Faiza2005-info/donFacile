@@ -16,7 +16,7 @@
         <a href="{{ url_for('edit_profile') }}" class="btn-custom">✏️ Modifier mon profil</a>
     </div>
 </div>
-<div style="margin-top: 20px; background: #f2f2f2; padding: 15px; border-radius: 8px;">
+<div style="margin-top: 20px; background: var(--beige-vert); padding: 15px; border-radius: 8px;">
     <h4>📊 Mon tableau de bord</h4>
     <ul style="list-style: none; padding-left: 0;">
         <li>📦 Dons publiés : <strong>{{ donations|length }}</strong></li>
@@ -35,12 +35,12 @@
                 {{ don[1] }}<br>
                 📍 {{ don[3] }}<br>
                 🕒 {{ don[4] }}<br><br>
-                <a href="{{ url_for('modifier_don', donation_id=don[0]) }}" style="margin-right: 10px; background-color: #3498db; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none;">
+                <a href="{{ url_for('modifier_don', donation_id=don[0]) }}" style="margin-right: 10px; background-color: var(--vert-moyen); color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none;">
                     Modifier
                 </a>
                 
                 <form action="{{ url_for('supprimer_don', donation_id=don[0]) }}" method="POST" onsubmit="return confirm('Supprimer ce don ?');" style="display: inline;">
-                    <button type="submit" style="background-color: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                    <button type="submit" style="background-color: var(--vert-clair); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
                         Supprimer
                     </button>
                 </form>

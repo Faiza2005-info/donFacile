@@ -1,27 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Créer un don</h2>
+<h2 style="text-align: center; color: var(--vert-fonce); margin-bottom: 25px;">Créer un don</h2>
 
-<form method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto;">
-    <label for="title">Titre :</label><br>
-    <input type="text" name="title" id="title" required style="width: 100%; padding: 8px;"><br><br>
+<form method="POST" enctype="multipart/form-data"
+      style="max-width: 600px; margin: auto; background-color: var(--blanc); padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"
+      class="fade-in">
 
-    <label for="description">Description :</label><br>
-    <textarea name="description" id="description" rows="4" style="width: 100%; padding: 8px;"></textarea><br><br>
+    <label for="title"><strong>Titre :</strong></label>
+    <input type="text" name="title" id="title" required class="form-input"><br><br>
 
-    <label for="category">Catégorie :</label><br>
-    <select name="category" id="category" style="width: 100%; padding: 8px;">
+    <label for="description"><strong>Description :</strong></label>
+    <textarea name="description" id="description" rows="4" class="form-input"></textarea><br><br>
+
+    <label for="category"><strong>Catégorie :</strong></label>
+    <select name="category" id="category" class="form-input">
         <option value="alimentaire">Alimentaire</option>
         <option value="vestimentaire">Vestimentaire</option>
         <option value="autre">Autre</option>
     </select><br><br>
 
-    <label for="location">Localisation :</label><br>
-    <input type="text" name="location" id="location" required style="width: 100%; padding: 8px;"><br><br>
+    <label for="location"><strong>Localisation :</strong></label>
+    <input type="text" name="location" id="location" required class="form-input"><br><br>
 
-    <label for="image">Image du don :</label><br>
-    <input type="file" name="image" id="image" accept="image/*"><br><br>
+    <label for="image"><strong>Image du don :</strong></label><br>
+    <input type="file" name="image" id="image" accept="image/*" class="form-input"><br><br>
 
-    <input type="submit" value="Publier le don" class="btn-custom">
+    <button type="submit" class="btn-custom" style="width: 100%; padding: 12px 0;">📦 Publier le don</button>
 </form>
 {% endblock %}

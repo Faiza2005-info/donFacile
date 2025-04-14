@@ -1,0 +1,161 @@
+:root {
+    --vert-fonce: #328E6E;
+    --vert-moyen: #67AE6E;
+    --vert-clair: #90C67C;
+    --beige-vert: #E1EEBC;
+    --texte: #1A1A1A;
+    --blanc: #fff;
+    
+  }
+  
+  body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--beige-vert);
+      color: var(--texte);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      transition: all 0.4s ease;
+  }
+  
+  header {
+      width: 100%;
+      background-color: var(--vert-moyen);
+      padding: 20px;
+      text-align: center;
+      color: var(--blanc);
+      font-size: 28px;
+      font-weight: bold;
+  }
+  
+  h1 {
+      font-size: 3em;
+      margin-top: 30px;
+      color: var(--vert-fonce);
+  }
+  
+  p {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      color: var(--texte);
+  }
+  
+  .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+  }
+  
+  .btn {
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 2px solid var(--vert-fonce);
+      cursor: pointer;
+      transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+      background-color: var(--vert-moyen);
+      color: var(--blanc);
+  }
+  
+  .btn-primary:hover {
+      background-color: var(--vert-fonce);
+  }
+  
+  .btn-outline {
+      background-color: transparent;
+      color: var(--vert-fonce);
+  }
+  
+  .btn-outline:hover {
+      background-color: var(--vert-clair);
+      color: var(--blanc);
+  }
+  
+  /* 🌙 Bouton pour activer le mode sombre */
+  .toggle-dark {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: 2px solid var(--vert-fonce);
+      color: var(--vert-fonce);
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+  }
+  
+  .toggle-dark:hover {
+      background-color: var(--vert-fonce);
+      color: var(--blanc);
+  }
+  
+  /* 🌚 Mode sombre */
+  body.dark-mode {
+      background-color: #1f1f1f;
+      color: #f0f0f0;
+  }
+  
+  body.dark-mode header {
+      background-color: #2c2c2c;
+      color: #f0f0f0;
+  }
+  
+  body.dark-mode h1 {
+      color: #90C67C;
+  }
+  
+  body.dark-mode .btn-outline {
+      color: #90C67C;
+      border-color: #90C67C;
+  }
+  
+  body.dark-mode .btn-outline:hover {
+      background-color: #90C67C;
+      color: #1A1A1A;
+  }
+  
+  body.dark-mode .btn-primary {
+      background-color: #328E6E;
+      color: white;
+  }
+  
+  body.dark-mode .toggle-dark {
+      color: #f0f0f0;
+      border-color: #f0f0f0;
+  }
+  
+  body.dark-mode .toggle-dark:hover {
+      background-color: #f0f0f0;
+      color: #1A1A1A;
+  }
+  footer {
+    /*background-color: #006A71; /* Couleur foncée pour contraster */
+    color: #f2fef7; /* Texte clair */
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}

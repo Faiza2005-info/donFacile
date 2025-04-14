@@ -1,19 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Mes demandes de dons</h2>
+<div style="max-width: 900px; margin: auto; padding: 30px 20px;">
+    <h2 style="text-align: center; color: var(--vert-fonce); margin-bottom: 30px;">📦 Mes demandes envoyées</h2>
 
-{% if demandes %}
-    <ul>
-        {% for demande in demandes %}
-            <li>
-                <strong>{{ demande[0] }}</strong> ({{ demande[1] }})<br>
-                📍 {{ demande[2] }}<br>
-                🕒 Demandé le : {{ demande[4] }}<br>
-                📌 Statut : <em>{{ demande[3] }}</em>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Vous n'avez encore fait aucune demande.</p>
-{% endif %}
+    {% if demandes %}
+        <ul style="list-style-type: none; padding: 0;">
+            {% for d in demandes %}
+                <li style="background-color: var(--blanc); padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                    <p style="margin-bottom: 8px;">
+                        <strong>{{ d[0] }}</strong> <em>({{ d[1] }})</em><br>
+                        📍 <span>{{ d[2] }}</span>
+                    </p>
+                    <p>
+                        Statut : 
+                        <span style="font-weight: bold; 
+                                     color: {% if d[3] == 'en attente' %}#E6A800{% elif d[3] == 'acceptée' %}green{% else %}crimson{% endif %};">
+                            {{ d[3]|capitalize }}
+                        </span>
+                        — Demandée le <span style="color: #666;">{{ d[4] }}</span>
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="text-align: center; font-style: italic; color: gray;">Vous n'avez fait aucune demande pour le moment.</p>
+    {% endif %}
+</div>
 {% endblock %}

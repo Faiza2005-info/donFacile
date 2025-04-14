@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>DonFacile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/index.css">
 
-    </style>
     
     <script>
         function toggleMenu() {
             const menu = document.getElementById('sideMenu');
-            const overlay = document.getElementById('overlay');
             menu.classList.toggle('show');
             overlay.classList.toggle('show');
         }
@@ -25,39 +22,6 @@
             }
         });
     
-        const placeholderTexts = [
-            "Rechercher par localisation...",
-            "par type de don..",
-            
-        ];
-    
-        window.addEventListener("DOMContentLoaded", () => {
-            const input = document.querySelector('input[name="location"]');
-            let placeholderIndex = 0;
-    
-            function typePlaceholder() {
-                if (!input) return;
-    
-                input.setAttribute("placeholder", "");
-                let text = placeholderTexts[placeholderIndex];
-                let charIndex = 0;
-    
-                let typing = setInterval(() => {
-                    if (charIndex < text.length) {
-                        input.setAttribute("placeholder", input.getAttribute("placeholder") + text[charIndex]);
-                        charIndex++;
-                    } else {
-                        clearInterval(typing);
-                        setTimeout(() => {
-                            placeholderIndex = (placeholderIndex + 1) % placeholderTexts.length;
-                            typePlaceholder();
-                        }, 2500);
-                    }
-                }, 80);
-            }
-    
-            typePlaceholder(); // Lancer l'effet
-        });
 
         // Dark mode toggle
         document.addEventListener("DOMContentLoaded", () => {
@@ -85,20 +49,15 @@
 
 <header>
     <a href="{{ url_for('home') }}" class="logo-link" style="display: flex; align-items: center;">
-        <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 40px;">
+        <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 60px;">
     </a>
 
     <div>
-        <button id="darkModeToggle" class="dark-toggle">🌙</button>
+        <button id="darkModeToggle" class="dark-toggle" aria-label="Mode sombre">🌙</button>
         <button class="burger" onclick="toggleMenu()">☰</button>
         
     </div>
 </header>
-
-
-    
-
-
 
 <!-- Sidebar -->
 <div id="sideMenu" class="sidebar">
@@ -108,11 +67,10 @@
             <a href="{{ url_for('profile') }}">Mon profil</a>
             <a href="{{ url_for('mes_demandes') }}">Mes demandes</a>
             <a href="{{ url_for('demandes_recues') }}"> Demandes reçues</a>
-
             <a href="{{ url_for('carte') }}">Carte des dons</a>
-
-            <a href="{{ url_for('mes_messages') }}">Mes messages {% if unread_count > 0 %}
-                <span style="color: red;">({{ unread_count }})</span>{% endif %}</a>
+            <a href="{{ url_for('messages') }}">
+                Mes messages {% if unread_count > 0 %}
+                    <span style="color: red;">({{ unread_count }})</span>{% endif %}</a>
             <a href="{{ url_for('logout') }}">Déconnexion</a>
             
         {% else %}
@@ -122,6 +80,7 @@
     </div>
 </div>
 
+<div id="overlay" class="overlay"></div>
 
 <main>
     {% block content %}{% endblock %}
