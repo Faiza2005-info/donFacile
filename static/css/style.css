@@ -15,8 +15,7 @@ body {
 }
 
 header {
-    background-color: var(--vert-moyen); /* Ash gray */
-    color: var(--blanc);
+    background: linear-gradient(to bottom, var(--vert-fonce), var(--vert-moyen), var(--beige-vert));    color: var(--blanc);
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
