@@ -45,6 +45,15 @@
     </script>
     
 </head>
+<div id="cookie-banner" class="cookie-banner">
+    <p>Ce site utilise des cookies pour améliorer votre expérience. <a href="{{ url_for('a_propos') }}">En savoir plus</a>.</p>
+    <div class="cookie-actions">
+        <button onclick="acceptCookies()">J'accepte</button>
+        <button onclick="rejectCookies()">Je refuse</button>
+    </div>
+</div>
+
+
 <body>
 
 <header>
@@ -86,5 +95,25 @@
     {% block content %}{% endblock %}
 </main>
 
+<script>
+    function acceptCookies() {
+        document.getElementById("cookie-banner").style.display = "none";
+        localStorage.setItem("cookiesConsent", "accepted");
+    }
+    
+    function rejectCookies() {
+        document.getElementById("cookie-banner").style.display = "none";
+        localStorage.setItem("cookiesConsent", "rejected");
+    }
+    
+    window.addEventListener("DOMContentLoaded", function () {
+        const consent = localStorage.getItem("cookiesConsent");
+        if (!consent) {
+            document.getElementById("cookie-banner").style.display = "block";
+        }
+    });
+    </script>
+    
+    
 </body>
 </html>

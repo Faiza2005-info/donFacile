@@ -343,3 +343,58 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+
+.a-propos h2 {
+    font-size: 28px;
+    color: var(--vert-fonce);
+}
+
+.a-propos p {
+    font-size: 18px;
+    color: var(--texte);
+}
+
+.a-propos blockquote {
+    font-style: italic;
+    color: #666;
+}
+
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(50, 142, 110, 0.95);
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 14px;
+    z-index: 9999;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cookie-banner a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.cookie-actions {
+    margin-top: 10px;
+}
+
+.cookie-banner button {
+    background: #ffffff;
+    color: var(--vert-fonce);
+    border: none;
+    padding: 8px 16px;
+    margin: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cookie-banner button:hover {
+    background: #e6e6e6;
+}

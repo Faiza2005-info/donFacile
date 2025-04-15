@@ -505,6 +505,11 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+@app.route('/a_propos')
+def a_propos():
+    return render_template('a_propos.html')
+
+
 @app.context_processor
 def inject_unread_count():
     if 'user_id' in session:
