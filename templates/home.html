@@ -1,67 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>DonFacile - Accueil</title>
-    <link rel="stylesheet" href="/static/css/home.css">
-
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
-        
-    
+  <meta charset="UTF-8">
+  <title>DonFacile - Accueil</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
-<button class="toggle-dark" onclick="toggleDarkMode()">🌙 </button>
-
 <body>
 
-<header>
+  <header>
+    <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" class="logo">
+    <h1 class="slogan">Bienvenue sur DonFacile</h1>
+  </header>
 
-<div style="text-align: center; margin-bottom: 20px;">
-    <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 235px; margin-bottom: -95px;">
-</div>
-</header>
+  <blockquote class="citation">
+    “Le plus beau cadeau, c’est celui qu’on donne sans rien attendre en retour.”
+  </blockquote>
+  <section class="actions">
+    <a href="{{ url_for('register') }}" class="btn btn-primary">S'inscrire</a>
+    <a href="{{ url_for('index') }}" class="btn btn-outline">Voir les dons</a>
+    <a href="{{ url_for('login') }}" class="btn btn-outline">Se connecter</a>
+  </section>
 
-
-    
-    <h1>Bienvenue sur DonFacile</h1>
-    <p>Plateforme pour faire des dons facilement </p>
-    
-
-    <div class="buttons">
-        <a href="{{ url_for('register') }}" class="btn btn-primary">S'inscrire</a>
-        <a href="{{ url_for('index') }}" class="btn btn-outline">Voir les dons</a>
-        <a href="{{ url_for('login') }}" class="btn btn-outline">Se connecter</a>
-    </div>
-    <blockquote style="font-style: italic; font-size: 1.1em; color: #2C3E50; margin: 30px auto; max-width: 600px; text-align: center;">
-        “Le plus petit geste de générosité vaut mieux que la plus grande intention.” 
-        – Oscar Wilde
-    </blockquote>
-</div>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0;">
-    <div style="text-align: center; max-width: 200px;">
-        <div style="font-size: 2em;">📦</div>
-        <p>Donnez des objets inutilisés</p>
-    </div>
-    <div style="text-align: center; max-width: 200px;">
-        <div style="font-size: 2em;">🤝</div>
-        <p>Faites plaisir à ceux qui en ont besoin</p>
-    </div>
-    <div style="text-align: center; max-width: 200px;">
-        <div style="font-size: 2em;">💬</div>
-        <p>Échangez facilement avec les bénéficiaires</p>
-    </div>
-</div>
+  <section class="features-section">
+  <div class="feature-card">
+    <div class="emoji">💚</div>
+    <h3>Donner</h3>
+    <p>Offrez une seconde vie à vos objets.</p>
+  </div>
+  <div class="feature-card">
+    <div class="emoji">📦</div>
+    <h3>Recevoir</h3>
+    <p>Trouvez ce dont vous avez besoin gratuitement.</p>
+  </div>
+  <div class="feature-card">
+    <div class="emoji">💬</div>
+    <h3>Créer du lien</h3>
+    <p>Discutez avec les donateurs autour de vous.</p>
+  </div>
+</section>
 
 
+  
 
-<footer>
-    <div class="footer-content">
-        <p>&copy; 2025 DonFacile. Tous droits réservés.</p>
-        <p>Fait avec 💚 par Faiza</p>
-    </div>
-</footer>
+  <footer>
+    <p>&copy; 2025 DonFacile — Fait avec 💚 par Faiza</p>
+  </footer>
+
 </body>
 </html>
