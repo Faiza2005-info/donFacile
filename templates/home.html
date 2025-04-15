@@ -4,8 +4,23 @@
   <meta charset="UTF-8">
   <title>DonFacile - Accueil</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem("dark-mode", isDark);
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const isDark = localStorage.getItem("dark-mode") === "true";
+      if (isDark) {
+        document.body.classList.add("dark-mode");
+      }
+    });
+  </script>
+  
 </head>
 <body>
+    <button class="toggle-dark" onclick="toggleDarkMode()" aria-label="Changer de mode">🌙</button>
 
   <header>
     <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" class="logo">
