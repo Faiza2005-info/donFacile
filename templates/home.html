@@ -20,7 +20,7 @@
 <header>
 
 <div style="text-align: center; margin-bottom: 20px;">
-    <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 194px; margin-bottom: -92px;">
+    <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 235px; margin-bottom: -95px;">
 </div>
 </header>
 
@@ -28,13 +28,34 @@
     
     <h1>Bienvenue sur DonFacile</h1>
     <p>Plateforme pour faire des dons facilement </p>
+    
 
     <div class="buttons">
         <a href="{{ url_for('register') }}" class="btn btn-primary">S'inscrire</a>
         <a href="{{ url_for('index') }}" class="btn btn-outline">Voir les dons</a>
         <a href="{{ url_for('login') }}" class="btn btn-outline">Se connecter</a>
     </div>
+    <blockquote style="font-style: italic; font-size: 1.1em; color: #2C3E50; margin: 30px auto; max-width: 600px; text-align: center;">
+        “Le plus petit geste de générosité vaut mieux que la plus grande intention.” 
+        – Oscar Wilde
+    </blockquote>
 </div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0;">
+    <div style="text-align: center; max-width: 200px;">
+        <div style="font-size: 2em;">📦</div>
+        <p>Donnez des objets inutilisés</p>
+    </div>
+    <div style="text-align: center; max-width: 200px;">
+        <div style="font-size: 2em;">🤝</div>
+        <p>Faites plaisir à ceux qui en ont besoin</p>
+    </div>
+    <div style="text-align: center; max-width: 200px;">
+        <div style="font-size: 2em;">💬</div>
+        <p>Échangez facilement avec les bénéficiaires</p>
+    </div>
+</div>
+
+
 
 <footer>
     <div class="footer-content">

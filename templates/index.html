@@ -7,13 +7,15 @@
     <!-- Barre de recherche -->
     <div class="search-bar">
         <form method="get" action="{{ url_for('index') }}" class="search-form">
-            <input type="text" name="location" placeholder="Rechercher par localisation, type de don..."
+            <input type="text" name="location" placeholder="Rechercher sur donFacile .."
                    value="{{ location_filter or '' }}" class="input-text">
 
             <select name="category" class="input-select">
                 <option value="all" {% if category_filter == 'all' or not category_filter %}selected{% endif %}>Toutes catégories</option>
                 <option value="alimentaire" {% if category_filter == 'alimentaire' %}selected{% endif %}>Alimentaire</option>
                 <option value="vestimentaire" {% if category_filter == 'vestimentaire' %}selected{% endif %}>Vestimentaire</option>
+                <option value="vestimentaire" {% if category_filter == 'Immoblier' %}selected{% endif %}>Immoblier</option>
+                <option value="vestimentaire" {% if category_filter == 'Eléctronique' %}selected{% endif %}>Eléctronique</option>
                 <option value="autre" {% if category_filter == 'autre' %}selected{% endif %}>Autre</option>
             </select>
 
