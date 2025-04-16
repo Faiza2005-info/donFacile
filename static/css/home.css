@@ -28,7 +28,7 @@
   
   .slogan {
     font-size: 2em;
-    color: noir;
+    color: var(--text);
     font-weight: bold;
   }
   
@@ -92,13 +92,12 @@
     margin: 40px 20px;
     font-style: italic;
     font-size: 1.5em;
-    color: noir;
+    color: var(--text);
     text-align: center;
   }
   
   footer {
-    
-    color: noir;
+    color: var(--text);
     text-align: center;
     padding: 10px;
     width: 100%;
@@ -155,7 +154,7 @@
     line-height: 1.5;
   }
   
-  /* 🌙 Mode sombre */
+  /* Mode sombre */
 body.dark-mode {
     background: linear-gradient(to bottom, #1e1e1e, #2e2e2e);
     color: #f0f0f0;
@@ -199,6 +198,6 @@ body.dark-mode {
   }
   
   body.dark-mode .toggle-dark {
-    color: #ffd700; /* jaune lune 🌙 */
+    color: #ffd700; 
   }
   

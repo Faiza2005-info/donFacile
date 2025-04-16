@@ -11,9 +11,14 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background-color: var(--beige-vert); /* Beige clair */
+    animation: fadeInBody 0.6s ease-in;
     color: var(--texte); /* Texte bleu-gris foncé */
-}
+}  
 
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 header {
     background: linear-gradient(to bottom, var(--vert-fonce), var(--vert-moyen), var(--beige-vert));    color: var(--blanc);
     padding: 15px 20px;
@@ -23,13 +28,11 @@ header {
     position: relative;
     z-index: 1001;
 }
-
 .title {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
 }
-
 .burger {
     font-size: 28px;
     cursor: pointer;
@@ -37,7 +40,6 @@ header {
     border: none;
     color: #328E6E;
 }
-
 .sidebar {
     position: fixed;
     top: 0;
@@ -51,11 +53,9 @@ header {
     z-index: 1002;
     padding: 20px;
 }
-
 .sidebar.show {
     right: 0;
 }
-
 .overlay {
     display: none;
     position: fixed;
@@ -66,12 +66,10 @@ header {
     background: rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
-
 .overlay.show {
     display: block;
     position: relative;
 }
-
 .menu-links a {
     display: block;
     margin: 15px 0;
@@ -79,30 +77,25 @@ header {
     font-size: 16px;
     color: #01160f;
 }
-
 .menu-links a:hover {
     text-decoration: underline;
 }
-
 .welcome {
     text-align: center;
     margin: 20px 0 10px;
     font-size: 20px;
 }
-
 main {
     max-width: 900px;
     margin: auto;
     padding: 20px;
-    background: #E1EEBC;
+    /*background: #E1EEBC;*/
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-
 a {
     color: #328E6E;
 }
-
 a:hover {
     color: #328E6E;
     text-decoration: underline;
@@ -110,15 +103,7 @@ a:hover {
 .fade-in {
 animation: fadeIn 0.8s ease-in-out;
 }
-header{
-width: 100%;
-background-color: var(--vert-moyen);
-padding: 20px;
-text-align: center;
-color: var(--blanc);
-font-size: 28px;
-font-weight: bold;
-}
+
 
 @keyframes fadeIn {
 from { opacity: 0; transform: translateY(10px); }
@@ -136,45 +121,38 @@ to { opacity: 1; transform: translateY(0); }
     text-decoration: none;
     display: inline-block;
 }
-
 .btn-custom:hover {
     background-color: #8A9E75;
     transform: translateY(-2px);
 }
-/* Dark mode toggle */
+/* Dark mode */
 .dark-toggle {
     font-size: 20px;
     margin-left: 15px;
     cursor: pointer;
     background: none;
     border: none;
-    color: #328E6E;
+    color: #ffd6e0;
 }
-
 body.dark-mode {
     background-color: #1e1e1e;
     color: #f0f0f0;
 }
-
 body.dark-mode header {
     background-color: #2b2b2b;
     color: #f0f0f0;
 }
-
 body.dark-mode main {
     background-color: #2c2c2c;
     color: #f0f0f0;
 }
-
 body.dark-mode a {
     color: #ffd6e0;
 }
-
 body.dark-mode .sidebar {
     background-color: #2c2c2c;
     color: white;
 }
-
 body.dark-mode input,
 body.dark-mode select,
 body.dark-mode textarea {
@@ -191,8 +169,6 @@ body.dark-mode textarea {
     font-weight: bold;
 }
 
-
-
 /*register et login */
 .form-container {
     background-color: var(--blanc);
@@ -202,19 +178,16 @@ body.dark-mode textarea {
     max-width: 400px;
     margin: 50px auto;
 }
-
 .form-container h2 {
     text-align: center;
     color: var(--vert-fonce);
     margin-bottom: 25px;
 }
-
 .form-container form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-
 input[type="email"],
 input[type="password"],
 input[type="text"] {
@@ -224,34 +197,28 @@ input[type="text"] {
     font-size: 14px;
     background-color: #f9f9f9;
 }
-
 .btn-custom.full-width {
     width: 100%;
     margin-top: 10px;
 }
-
 .form-options {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
 }
-
 .link {
     color: var(--vert-fonce);
     text-decoration: none;
 }
-
 .link:hover {
     text-decoration: underline;
 }
-
 .footer-text {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
 }
-
 .auth-container {
     max-width: 400px;
     margin: 40px auto;
@@ -261,19 +228,16 @@ input[type="text"] {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     color: var(--texte);
 }
-
 .auth-container h2 {
     text-align: center;
     margin-bottom: 20px;
     color: var(--vert-fonce);
 }
-
 .auth-form label {
     display: block;
     margin: 12px 0 5px;
     font-weight: 500;
 }
-
 .auth-form input[type="text"],
 .auth-form input[type="email"],
 .auth-form input[type="password"] {
@@ -285,7 +249,6 @@ input[type="text"] {
     background: #fff;
     color: var(--texte);
 }
-
 .checkbox-line {
     margin-top: 15px;
     display: flex;
@@ -293,7 +256,6 @@ input[type="text"] {
     font-size: 14px;
     gap: 8px;
 }
-
 .error-msg {
     background-color: #ffe6e6;
     color: #a33;
@@ -302,14 +264,11 @@ input[type="text"] {
     margin-bottom: 15px;
     font-size: 14px;
 }
-
 .switch-auth {
     margin-top: 20px;
     text-align: center;
     font-size: 14px;
 }
-
-
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -373,16 +332,13 @@ img {
     z-index: 9999;
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
-
 .cookie-banner a {
     color: #fff;
     text-decoration: underline;
 }
-
 .cookie-actions {
     margin-top: 10px;
 }
-
 .cookie-banner button {
     background: #ffffff;
     color: var(--vert-fonce);
@@ -394,7 +350,6 @@ img {
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
-
 .cookie-banner button:hover {
     background: #e6e6e6;
 }

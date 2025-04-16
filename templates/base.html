@@ -6,45 +6,19 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/index.css">
 
-    
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('sideMenu');
-            menu.classList.toggle('show');
-            overlay.classList.toggle('show');
-        }
-    
-        window.addEventListener('click', function (e) {
-            const sidebar = document.getElementById('sideMenu');
-            const burger = document.querySelector('.burger');
-            if (!sidebar.contains(e.target) && !burger.contains(e.target)) {
-                sidebar.classList.remove('show');
-            }
-        });
-    
-
-        // Dark mode toggle
-        document.addEventListener("DOMContentLoaded", () => {
-        const toggleBtn = document.getElementById("darkModeToggle");
-        const body = document.body;
-
-        // Check saved preference
-        if (localStorage.getItem("dark-mode") === "true") {
-            body.classList.add("dark-mode");
-            toggleBtn.textContent = "☀️";
-        }
-
-        toggleBtn.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-            const isDark = body.classList.contains("dark-mode");
-            toggleBtn.textContent = isDark ? "☀️" : "🌙";
-            localStorage.setItem("dark-mode", isDark);
-        });
-    });
-
-    </script>
-    
 </head>
+
+<body>
+<header>
+    <a href="{{ url_for('home') }}" class="logo-link" style="display: flex; align-items: center;">
+        <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 60px;">
+    </a>
+    <div>
+        <button id="darkModeToggle" class="dark-toggle" aria-label="Mode sombre">🌙</button>
+        <button class="burger" onclick="toggleMenu()">☰</button>
+    </div>
+</header>
+
 <div id="cookie-banner" class="cookie-banner">
     <p>Ce site utilise des cookies pour améliorer votre expérience. <a href="{{ url_for('a_propos') }}">En savoir plus</a>.</p>
     <div class="cookie-actions">
@@ -53,26 +27,9 @@
     </div>
 </div>
 
-
-<body>
-
-<header>
-    <a href="{{ url_for('home') }}" class="logo-link" style="display: flex; align-items: center;">
-        <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" style="height: 60px;">
-    </a>
-
-    <div>
-        <button id="darkModeToggle" class="dark-toggle" aria-label="Mode sombre">🌙</button>
-        <button class="burger" onclick="toggleMenu()">☰</button>
-        
-    </div>
-</header>
-
-<!-- Sidebar -->
 <div id="sideMenu" class="sidebar">
     <div class="menu-links">
         {% if session.get('user_id') %}
-
             <a href="{{ url_for('profile') }}">Mon profil</a>
             <a href="{{ url_for('mes_demandes') }}">Mes demandes</a>
             <a href="{{ url_for('demandes_recues') }}"> Demandes reçues</a>
@@ -81,21 +38,47 @@
                 Mes messages {% if unread_count > 0 %}
                     <span style="color: red;">({{ unread_count }})</span>{% endif %}</a>
             <a href="{{ url_for('logout') }}">Déconnexion</a>
-            
         {% else %}
             <a href="{{ url_for('login') }}">Connexion</a>
             <a href="{{ url_for('register') }}">Inscription</a>
         {% endif %}
     </div>
 </div>
-
 <div id="overlay" class="overlay"></div>
-
 <main>
     {% block content %}{% endblock %}
 </main>
-
 <script>
+    function toggleMenu() {
+        const menu = document.getElementById('sideMenu');
+        menu.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+    
+    window.addEventListener('click', function (e) {
+        const sidebar = document.getElementById('sideMenu');
+        const burger = document.querySelector('.burger');
+        if (!sidebar.contains(e.target) && !burger.contains(e.target)) {               sidebar.classList.remove('show');
+        }
+    });
+
+    // Dark mode 
+    document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    if (localStorage.getItem("dark-mode") === "true") {
+        body.classList.add("dark-mode");
+        toggleBtn.textContent = "☀️";
+    }
+    toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+        toggleBtn.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("dark-mode", isDark);
+    });
+});
+
     function acceptCookies() {
         document.getElementById("cookie-banner").style.display = "none";
         localStorage.setItem("cookiesConsent", "accepted");
@@ -113,7 +96,6 @@
         }
     });
     </script>
-    
-    
+
 </body>
 </html>

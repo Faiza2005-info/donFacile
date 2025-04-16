@@ -3,8 +3,6 @@
 
 <div class="index-container">
     
-
-    <!-- Barre de recherche -->
     <div class="search-bar">
         <form method="get" action="{{ url_for('index') }}" class="search-form">
             <input type="text" name="location" placeholder="Rechercher sur donFacile .."
@@ -18,12 +16,10 @@
                 <option value="vestimentaire" {% if category_filter == 'Eléctronique' %}selected{% endif %}>Eléctronique</option>
                 <option value="autre" {% if category_filter == 'autre' %}selected{% endif %}>Autre</option>
             </select>
-
             <input type="submit" value="Rechercher" class="btn-custom">
         </form>
     </div>
 
-    <!-- Bouton "Faire un don" -->
     <div class="add-donation-btn">
         <a href="{{ url_for('create_donation') }}" class="btn-custom">
             ➕ Faire un don

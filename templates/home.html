@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DonFacile - Accueil</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
   <script>
@@ -26,7 +27,7 @@
     <img src="{{ url_for('static', filename='logo_donfacile.png') }}" alt="Logo DonFacile" class="logo">
     <h1 class="slogan">Bienvenue sur DonFacile</h1>
   </header>
-
+<main>
   <blockquote class="citation">
     “Le plus beau cadeau, c’est celui qu’on donne sans rien attendre en retour.”
   </blockquote>
@@ -53,16 +54,10 @@
     <p>Discutez avec les donateurs autour de vous.</p>
   </div>
 </section>
-
-
-  
-
-  <footer>
-    <p>&copy; 2025 DonFacile — Fait avec 💚 par Faiza</p>
-  </footer>
-  <footer>
-    <a href="{{ url_for('a_propos') }}" style="color: inherit; margin-left: 10px;">À propos</a>
-
+</main>
+<footer>
+  <p>&copy; 2025 DonFacile — Fait avec 💚 par Faiza</p>
+  <a href="{{ url_for('a_propos') }}" style="color: inherit; margin-left: 10px;">À propos</a>
 </footer>
 </body>
 </html>

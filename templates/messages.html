@@ -4,7 +4,6 @@
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
-    <!-- 📋 Liste des discussions -->
     <div style="flex: 1; min-width: 250px;">
         <h4>📁 Mes conversations</h4>
         {% if discussions %}
@@ -22,7 +21,6 @@
         {% endif %}
     </div>
 
-    <!-- 💬 Zone de chat -->
     {% if receiver_id and donation_id %}
     <div style="flex: 2; min-width: 350px;">
         <h4>💬 Discussion avec {{ receiver_name }}</h4>
